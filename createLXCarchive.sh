@@ -15,12 +15,12 @@ LXC_ARCH=amd64
 LXC_BUILD_ROOT=$(cd "$(dirname "$0")" && pwd)
 
 # check if build machine uses /mnt/user
-if echo ${LXC_BUILD_ROOT} | grep -q "/mnt/user" ; then
-  echo "ERROR: Build root /mnt/user is not allowed!"
+if echo ${LXC_PATH} | grep -q "/mnt/user" ; then
+  echo "ERROR: LXC path /mnt/user is not allowed!"
 fi
 
 # generate temporary LXC container name
-LXC_CONT_NAME=$(openssl rand -base64 12 | tr -dc 'a-z0-9')
+LXC_CONT_NAME=$(openssl rand -base64 24 | tr -dc 'a-z0-9' | cut -c -12)
 
 # check if build cache directory exist
 if [ ! -d ${LXC_PACKAGE_DIR} ]; then

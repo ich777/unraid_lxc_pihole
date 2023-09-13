@@ -30,7 +30,8 @@
 3. [Set a static IP](#step-3-set-a-static-ip)
 4. [Configure keepalived](#step-4-configure-keepalived)
 5. [Configure Gravity sync](#step-5-configure-gravity-sync)
-6. [Confiure cron](#step-6-configure-cron)
+6. [(optional) Confiure cron](#optional-step-6-configure-cron)
+7. [(optional) Configure Unbound](#optional-step-7-configure-unbound)
 
 ## Step 1: Install Container archive
 
@@ -90,7 +91,7 @@ DNS=x.x.x.x
 
 - TBD
 
-## Step 6: Configure cron
+## (optional) Step 6: Configure cron
 
 By default the cron schedules for updates are:
 - root.hints: every Sunday at 0:00

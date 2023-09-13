@@ -16,6 +16,12 @@
 
 (please note that IPv6 is disabled by default)
 
+## LXC Distribution Infromation
+
+- debian
+- bookworm
+- amd64
+
 ## Table of Contents
 
 1. [Install container](#step-1-install-container-archive)

@@ -18,5 +18,5 @@ Please note that keepalived is not installed by default</Overview>
   <Icon>https://raw.githubusercontent.com/ich777/docker-templates/master/ich777/images/pihole.png</Icon>
   <DonateText>If you like my work (or not) please </DonateText>
   <DonateLink>https://payme.now/pls</DonateLink>
-  <Requires>A unRAID server</Requires>
+  <Requires>unRAID server</Requires>
 </LXC>

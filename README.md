@@ -13,6 +13,7 @@
 - Cron
 - PiHole
 - Gravity Sync
+- OpenSSH Server
 
 (please note that IPv6 is disabled by default)
 

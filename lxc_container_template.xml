@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LXC version="0.1">
+  <Name>PiHole</Name>
+  <Distribution>debian</Distribution>
+  <Release>bookworm</Release>
+  <Architecture>amd64</Architecture>
+  <Repository>https://github.com/ich777/unraid_lxc_pihole</Repository>
+  <Description>Unbound, PiHole, Gravity sync, keepalived</Description>
+  <Autostart>true</Autostart>
+  <Beta>True</Beta>
+  <Support>https://support.me.pls</Support>
+  <Source>https://pi-hole.net/</Source>
+  <Project>https://github.com/pi-hole/pi-hole</Project>
+  <Overview>This LXC container contains a fully fledged non caching DNS Unbound instance alongside with PiHole for AdBlocking, Gravity sync for synchronizing your PiHoles and keepalived for high availability.&#xD;
+Please note that keepalived is not installed by default</Overview>
+  <Category>Tools:</Category>
+  <WebUI>http://[IP]:80/admin </WebUI>
+  <Icon>https://raw.githubusercontent.com/ich777/docker-templates/master/ich777/images/pihole.png</Icon>
+  <DonateText>If you like my work (or not) please </DonateText>
+  <DonateLink>https://payme.now/pls</DonateLink>
+  <Requires>A unRAID server</Requires>
+</LXC>

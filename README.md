@@ -34,65 +34,72 @@
 
 ## Step 1: Install Container archive
 
-  1. Go to the CA App and search for PiHole
-  2. Select the LXC template and install it
+1. Go to the CA App and search for PiHole
+2. Select the LXC template and install it
 
 ## Step 2: Set root password
 
-  - Open up a Terminal from the PiHole container (click the container icon and select "Terminal")
-  - Type in `passwd`
-  - Type in your prefered password twice (no output is displayed) and press ENTER
+- Open up a Terminal from the PiHole container (click the container icon and select "Terminal")
+- Type in `passwd`
+- Type in your prefered password twice (no output is displayed) and press ENTER
 
 
 ## Step 3: Set a static IP
 
 You have multiple options here:
 
-  1. Set a static IP for the container in your DHCP server:
-  - Visit the configuration page from your Router/Firewall and assign a static IP and stop/start the container once
-    (restarting the container could lead that the old IP is keeped until you fully stop and start the container once)
-  2. Set a static IP in the container itself (recommended):
-  - Type in `nmtui` and press ENTER
-  - Highlight "Edit Connection" and press ENTER
-  - Highlight "Wired Connection" and navigate with the arrow keys to "Edit..." and press ENTER
-  - Navigate to the line "IPv4 CONFIGURATION", press ENTER and select "Manual" and press ENTER
-  - Navigate to show and press ENTER
-  - Navigate to the line "ADDRESSES", highlight "Add..." and hit ENTER
-  - Enter the prefered static IP address
-  - Navigate to the line "Gateway" and enter the IP address from your Gateway
-  - Navigate to the line "DNS Servers" and add your DNS server(s)
-  - (do the same for IPv6 if needed)
-  - Navigate to "OK" at the bottom and press ENTER
-  - Navigate to "Back" and press ENTER
-  - Navigate to "Quit" and press ENTER
-  - Stop/Start the container once
-    (restarting the container could lead that the old IP is keeped until you fully stop and start the container once)
+1. Set a static IP for the container in your DHCP server:
+- Visit the configuration page from your Router/Firewall and assign a static IP and stop/start the container once
+  (restarting the container could lead to unexpected behaviour like that the old IP is keeped until you fully stop and start the container once)
+2. Set a static IP in the container itself (recommended):
+- Type in `/etc/systemd/network/eth0.network` and press ENTER
+- Replace the line `DHCP=true` with the following code block by copy-paste:
+```
+Address=x.x.x.x/24
+#Address=xxxx:xxxx:xxxx:x:x:x:x 
+
+Gateway=x.x.x.x
+#Gateway=xxxx:xxxx:xxxx:x:x:x:x  
+
+DNS=x.x.x.x
+#DNS=xxxx:xxxx:xxxx:x:x:x:x
+```
+- Replace "x.x.x.x" at "Address" with your prefered IP address
+- Replace "x.x.x.x" at "Gateway" with your Gateway IP address
+- Replace "x.x.x.x" at "DNS" with your DNS server
+- (optional) If you need IPv6 uncomment the IPv6 lines and replace them with your IPv6 addresses
+- Save and close the file with "CTRL + X" followed by "Y" and press ENTER
+- Stop/Start the container once
+  (restarting the container could lead to unexpected behaviour like that the old IP is keeped until you fully stop and start the container once)
 
 ## Step 4: Configure keepalived
 
-  - Type in `nano /etc/keepalived/keepalived.conf`
-  - Change the "state" to MASTER or BACKUP depending which instance you are configuring (only one MASTER but multiple BACKUP instances are allowed)
-  - (change the "virtual_router_id" if you have multiple keepalived instances in your network and you want to use for each instance a separate router)
-  - Change the "priority" depending if it's a MASTER or BACKUP instance
-    (the MASTER interface shoudl be set to 100 and the BACKUP instance(s) from 1 to 99 <- higher priority is prefered first)
-  - Change the password "superstrongpassword" at "auth_pass" (must be the same on all MASTER and BACKUP instances for the current virtual_router_id)
-  - Change "x.x.x.x" at "virtual_ipaddress" to the IPv4 address which should have high availability
-  - (if you need IPv6 too, then uncomment the lines as specified in the configuration and specify a static IPv6)
-  - Save the file by pressing "CTRL + X" followed by "Y" and ENTER
-  - Enable keepalived on start from the container with `systemctl enable keepalived`
-  - To start keepalived restart the container or issue `systemctl start keepalived` 
+- Type in `nano /etc/keepalived/keepalived.conf`
+- Change the "state" to MASTER or BACKUP depending which instance you are configuring (only one MASTER but multiple BACKUP instances are allowed)
+- (optional) change the "virtual_router_id" if you have multiple keepalived instances in your network and you want to use for each instance a separate router
+- Change the "priority" depending if it's a MASTER or BACKUP instance
+  (the MASTER interface shoudl be set to 100 and the BACKUP instance(s) from 1 to 99 <- higher priority is prefered first)
+- Change the password "superstrongpassword" at "auth_pass" (must be the same on all MASTER and BACKUP instances for the current virtual_router_id)
+- Change "x.x.x.x" at "virtual_ipaddress" to the IPv4 address which should have high availability
+- (optional) if you need IPv6 too, then uncomment the lines as specified in the configuration and specify a static IPv6
+- Save the file by pressing "CTRL + X" followed by "Y" and ENTER
+- Enable keepalived on start from the container with `systemctl enable keepalived`
+- To start keepalived restart the container or issue `systemctl start keepalived` 
 
 ## Step 5: Configure Gravity sync
 
-  - TBD
+- TBD
 
 ## Step 6: Configure cron
 
 By default the cron schedules for updates are:
-  - root.hints: every Sunday at 0:00
-  - PiHole and Gravity sync: every Sunday at 0:30
+- root.hints: every Sunday at 0:00
+- PiHole and Gravity sync: every Sunday at 0:30
 
 To change the crontab:
 - Issue `crontab -e` from a container Terminal
 - Select your prefered editor (in this example nano) by pressing 1 and ENTER
 - Change the crontab accordingly and press "CTRL + X" followed by "Y" and ENTER to save the file
+
+## (optional) Step 7: Configure Unbound
+- The configuration from Unbound is located at `/etc/unbound/unbound.conf`(if you need for example IPv6 or your local subnets doesn't match)

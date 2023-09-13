@@ -103,3 +103,7 @@ To change the crontab:
 
 ## (optional) Step 7: Configure Unbound
 - The configuration from Unbound is located at `/etc/unbound/unbound.conf`(if you need for example IPv6 or your local subnets doesn't match)
+- Don't forget to restart Unbound with `systemctl restart unbound`after editing the file or simply restart the container
+
+## Finished
+- Open up the PiHole WebUI by clicking on the container icon and select WebUI

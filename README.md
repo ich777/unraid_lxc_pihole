@@ -52,7 +52,7 @@ You have multiple options here:
 - Visit the configuration page from your Router/Firewall and assign a static IP and stop/start the container once
   (restarting the container could lead to unexpected behaviour like that the old IP is keeped until you fully stop and start the container once)
 2. Set a static IP in the container itself (recommended):
-- Type in `/etc/systemd/network/eth0.network` and press ENTER
+- Type in `nano /etc/systemd/network/eth0.network` and press ENTER
 - Replace the line `DHCP=true` with the following code block by copy-paste:
 ```
 Address=x.x.x.x/24

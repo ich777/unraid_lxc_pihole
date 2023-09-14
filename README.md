@@ -47,7 +47,7 @@
 
 ## Step 3: Set a static IP
 
-This step is highly recommended but not necessary. Usually it is enough that you container get a random IP address assigned from your DHCP server since the static IP address which you want to use for DNS is assigned in [configure keepalived](#step-4-configure-keepalived).
+This step is highly recommended but not necessary. Usually, it is sufficient for your container to be assigned a random IP address from your DHCP server because the virtual IP address for your DNS should be static and is set in the [configure keepalived](#step-4-configure-keepalived) section.
 
 You have multiple options here:
 

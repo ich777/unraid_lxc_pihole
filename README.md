@@ -47,7 +47,8 @@
 
 ## Step 3: Set a static IP
 
-This step is highly recommended but not necessary. Usually, it is sufficient for your container to be assigned a random IP address from your DHCP server because the virtual IP address for your DNS should be static and is set in the [configure keepalived](#step-4-configure-keepalived) section.
+This step is highly recommended but not necessary. Usually, it is sufficient for your container to be assigned a random IP address from your DHCP server because the virtual IP address for your DNS should be static and is set in the [configure keepalived](#step-4-configure-keepalived) section.  
+It is also recommended to change the hostname from the container with the command: `hostnamectl set-hostname <HOSTNAME>`(replace <HOSTNAME> with your prefered Hostname).
 
 You have multiple options here:
 
@@ -69,7 +70,7 @@ DNS=x.x.x.x
 ```
 - Replace "x.x.x.x" at "Address" with your prefered IP address
 - Replace "x.x.x.x" at "Gateway" with your Gateway IP address
-- Replace "x.x.x.x" at "DNS" with your DNS server
+- Replace "x.x.x.x" at "DNS" with your favourite public DNS server or from your Router
 - (optional) If you need IPv6 uncomment the IPv6 lines and replace them with your IPv6 addresses
 - Save and close the file with "CTRL + X" followed by "Y" and press ENTER
 - Stop/Start the container once

@@ -47,6 +47,8 @@
 
 ## Step 3: Set a static IP
 
+This step is highly recommended but not necessary. Usually it is enough that you container get a random IP address assigned from your DHCP server since the static IP address which you want to use for DNS is assigned in [Configure keepalived](#step-4-configure-keepalived).
+
 You have multiple options here:
 
 1. Set a static IP for the container in your DHCP server:
@@ -79,12 +81,12 @@ DNS=x.x.x.x
 - Change the "state" to MASTER or BACKUP depending which instance you are configuring (only one MASTER but multiple BACKUP instances are allowed)
 - (optional) change the "virtual_router_id" if you have multiple keepalived instances in your network and you want to use for each instance a separate router
 - Change the "priority" depending if it's a MASTER or BACKUP instance
-  (the MASTER interface shoudl be set to 100 and the BACKUP instance(s) from 1 to 99 <- higher priority is prefered first)
+  (the MASTER interface should be set to 100 and the BACKUP instance(s) from 1 to 99 <- higher priority is prefered first)
 - Change the password "superstrongpassword" at "auth_pass" (must be the same on all MASTER and BACKUP instances for the current virtual_router_id)
-- Change "x.x.x.x" at "virtual_ipaddress" to the IPv4 address which should have high availability
-- (optional) if you need IPv6 too, then uncomment the lines as specified in the configuration and specify a static IPv6
+- Change "x.x.x.x" at "virtual_ipaddress" to the IPv4 address which should have high availability and you want to use for DNS requests (must be the same on all MASTER and BACKUP instances)
+- (optional) if you need IPv6, uncomment the lines as specified in the configuration and specify a static IPv6
 - Save the file by pressing "CTRL + X" followed by "Y" and ENTER
-- Enable keepalived on start from the container with `systemctl enable keepalived`
+- Enable keepalived for automatic start from the container with `systemctl enable keepalived`
 - To start keepalived restart the container or issue `systemctl start keepalived` 
 
 ## Step 5: Configure Gravity sync

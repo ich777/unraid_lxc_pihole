@@ -17,7 +17,7 @@ if [ ! -s "${UB_FOLDER}/new.${FILE_NAME##*.}" ]; then
   echo "New roothints file is empty!"
   rm ${UB_FOLDER}/new.${FILE_NAME##*.}
 elif [ "${UB_FOLDER}/new.${FILE_NAME##*.}" -nt "${UB_FOLDER}/${FILE_NAME}" ]; then
-  echo "Update from ${FILE_NAME}, restarting service: ${CONTAINER_NAME}"
+  echo "Update from ${FILE_NAME}, restarting service: ${SERVICE_NAME}"
   cp ${UB_FOLDER}/new.${FILE_NAME##*.} ${UB_FOLDER}/${FILE_NAME}
   rm ${UB_FOLDER}/new.${FILE_NAME##*.}
   systemctl restart ${SERVICE_NAME}

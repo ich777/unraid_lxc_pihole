@@ -62,7 +62,7 @@ done
 
 # stop LXC container
 echo "Stopping temporary container"
-lxc-stop -n -t 15 ${LXC_CONT_NAME} 2>/dev/null
+lxc-stop -n ${LXC_CONT_NAME} -t 15 2>/dev/null
 
 # copy over build log files
 echo "Copying over build logs from container"

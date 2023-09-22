@@ -28,8 +28,8 @@
 1. [Install container](#step-1-install-container-archive)
 2. [Set root password](#step-2-set-root-password)
 3. [Set a static IP](#step-3-set-a-static-ip)
-4. [Configure keepalived](#step-4-configure-keepalived)
-5. [Configure Gravity sync](#step-5-configure-gravity-sync)
+4. [(optional) Configure keepalived](#optional-step-4-configure-keepalived)
+5. [(optional) Configure Gravity sync](#optional-step-5-configure-gravity-sync)
 6. [(optional) Confiure cron](#optional-step-6-configure-cron)
 7. [(optional) Configure Unbound](#optional-step-7-configure-unbound)
 
@@ -76,7 +76,7 @@ DNS=x.x.x.x
 - Stop/Start the container once
   (restarting the container could lead to unexpected behaviour like that the old IP is keeped until you fully stop and start the container once)
 
-## Step 4: Configure keepalived
+## (optional) Step 4: Configure keepalived
 
 - Type in `nano /etc/keepalived/keepalived.conf`
 - Change the "state" to MASTER or BACKUP depending which instance you are configuring (only one MASTER but multiple BACKUP instances are allowed)
@@ -90,7 +90,7 @@ DNS=x.x.x.x
 - Enable keepalived for automatic start from the container with `systemctl enable keepalived`
 - To start keepalived restart the container or issue `systemctl start keepalived` 
 
-## Step 5: Configure Gravity sync
+## (optional) Step 5: Configure Gravity sync
 
 - TBD
 

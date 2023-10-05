@@ -13,6 +13,7 @@
 - Cron
 - PiHole
 - Gravity Sync
+- LANCache (optional)
 - OpenSSH Server
 
 (please note that IPv6 is disabled by default)
@@ -30,8 +31,9 @@
 3. [Set a static IP](#step-3-set-a-static-ip)
 4. [(optional) Configure keepalived](#optional-step-4-configure-keepalived)
 5. [(optional) Configure Gravity sync](#optional-step-5-configure-gravity-sync)
-6. [(optional) Confiure cron](#optional-step-6-configure-cron)
-7. [(optional) Configure Unbound](#optional-step-7-configure-unbound)
+6. [(optional) Configure LANCache](#optional-step-6-configure-lancache)
+7. [(optional) Confiure cron](#optional-step-7-configure-cron)
+8. [(optional) Configure Unbound](#optional-step-8-configure-unbound)
 
 ## Step 1: Install Container archive
 
@@ -94,18 +96,39 @@ DNS=x.x.x.x
 
 - TBD
 
-## (optional) Step 6: Configure cron
+## (optional) Step 6: Configure LANCache
+
+The container ships with a script located at `/root/update-lancache.sh` that is not enabled by default.
+
+Before you start and run this script, it is strongly recommended that you use a SSD/NVME (without RAID/Mirror) for the LANCache and mount it to the container, to do so please stop the LXC container, edit the config and add these lines:
+```
+# Mount host directory
+lxc.mount.entry = /mnt/disks/LANCache mnt/lancache none bind 0 0
+```
+In this example a disk is mounted through Unassigned devices with the label: LANCache and the path `/mnt/disks/LANCache` on Unraid (please note that the path `mnt/lancache` is the path inside the container and the missing `/` at the start is not a typo!).
+
+You can of course mount a path else where for example on the cache where the entry needs to look something like that:
+`lxc.mount.entry = /mnt/cache/LANCache mnt/lancache none bind 0 0`
+
+After mounting the path from the Host you can run this script. On the first run it will install Docker, after that LANCache is pulled from DockerHub and started, the default values for the cache itself are: CACHE_SIZE=1000g (1TB) and CACHE_INDEX_SIZE=250m
+
+If you need other values then please edit the file `/root/update-lancache.sh` and audjust the values to your preferences (please note if you exceed the disk size for the value from CACHE_SIZE the container will not start and will be stuck in a restart loop)
+
+To enable frequent updates remove the `#` from the last line in the crontab, see [(optional) Confiure cron](#optional-step-7-configure-cron) for more information.
+
+## (optional) Step 7: Configure cron
 
 By default the cron schedules for updates are:
 - root.hints: every Sunday at 0:00
 - PiHole and Gravity sync: every Sunday at 0:30
+- (optional) LANCache: every Sunday at 0:45)
 
 To change the crontab:
 - Issue `crontab -e` from a container Terminal
 - Select your prefered editor (in this example nano) by pressing 1 and ENTER
 - Change the crontab accordingly and press "CTRL + X" followed by "Y" and ENTER to save the file
 
-## (optional) Step 7: Configure Unbound
+## (optional) Step 8: Configure Unbound
 - The configuration from Unbound is located at `/etc/unbound/unbound.conf`(if you need for example IPv6 or your local subnets doesn't match)
 - Don't forget to restart Unbound with `systemctl restart unbound`after editing the file or simply restart the container
 

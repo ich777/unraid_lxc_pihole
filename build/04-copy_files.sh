@@ -7,4 +7,5 @@ cp /tmp/build/keepalived.conf /etc/keepalived/keepalived.conf
 chmod 644 /etc/keepalived/keepalived.conf
 cp /tmp/build/update-roothints.sh /root/update-roothints.sh
 cp /tmp/build/update-applications.sh /root/update-applications.sh
+cp /tmp/build/update-lancache.sh /root/update-lancache.sh
 cp /tmp/build/generate_ssh_keys.sh /etc/init.d/generate_ssh_keys.sh

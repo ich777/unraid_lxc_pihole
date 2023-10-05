@@ -1,2 +1,3 @@
 0 0 * * SUN /root/update-roothints.sh > /var/log/update-roothints.log
 30 0 * * SUN /root/update-applications.sh > /var/log/update-applications.log
+#45 0 * * SUN /root/update-lancache.sh > /var/log/update-lancache.log

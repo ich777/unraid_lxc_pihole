@@ -14,7 +14,7 @@
   <Overview>This LXC container contains a fully fledged non caching DNS Unbound instance alongside with PiHole for AdBlocking, Gravity sync for synchronizing your PiHoles and keepalived for high availability.&#xD;
 Please note that keepalived is not installed by default</Overview>
   <Category>Tools:</Category>
-  <WebUI>http://[IP]:80/admin </WebUI>
+  <WebUI>http://[IP]:8080/admin </WebUI>
   <Icon>https://raw.githubusercontent.com/ich777/docker-templates/master/ich777/images/pihole.png</Icon>
   <DonateText>If you like my work (or not) please </DonateText>
   <DonateLink>https://payme.now/pls</DonateLink>

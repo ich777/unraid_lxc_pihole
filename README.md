@@ -100,7 +100,7 @@ DNS=x.x.x.x
 
 The container ships with a script located at `/root/update-lancache.sh` that is not enabled by default.
 
-Before you start and run this script, it is strongly recommended that you use a SSD/NVME (without RAID/Mirror) for the LANCache and mount it to the container, to do so please stop the LXC container, edit the config and add these lines:
+Before you start and run this script, it is strongly recommended that you use a SSD/NVME (without RAID/Mirror) for the LANCache and mount it to the container, to do so please stop the LXC container, edit the config (you'll find the container config in your LXC direcotry -> container name -> config eg: `/mnt/cache/lxc/CONTAINERNAME/config`, you can get the full container config path by showing the container config on the LXC page too) and add these lines:
 ```
 # Mount host directory
 lxc.mount.entry = /mnt/disks/LANCache mnt/lancache none bind 0 0

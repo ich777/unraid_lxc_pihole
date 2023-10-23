@@ -17,6 +17,7 @@ LXC_BUILD_ROOT=$(cd "$(dirname "$0")" && pwd)
 # check if build machine uses /mnt/user
 if echo ${LXC_PATH} | grep -q "/mnt/user" ; then
   echo "ERROR: LXC path /mnt/user is not allowed!"
+  exit 1
 fi
 
 # generate temporary LXC container name
@@ -58,6 +59,14 @@ IFS=$'\n'
 for script in ${LXC_BUILD_FILES}; do
   echo "Executing build script $script in container"
   lxc-attach -n ${LXC_CONT_NAME} -- bash -c "chmod +x /tmp/build/$script && /tmp/build/$script 2>&1 | tee /tmp/${script%.*}.log"
+  EXIT_STATUS=$?
+  if [ "${EXIT_STATUS}" != "0" ]; then
+    echo "ERROR: ${script} returned non zero exit status, abort!"
+    lxc-stop -k -n ${LXC_CONT_NAME} 2>/dev/null
+    lxc-destroy -n ${LXC_CONT_NAME}
+    exit 1
+  fi
+  unset EXIT_STATUS
 done
 
 # stop LXC container

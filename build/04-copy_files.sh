@@ -8,6 +8,7 @@ chmod 644 /etc/keepalived/keepalived.conf
 cp /tmp/build/update-roothints.sh /root/update-roothints.sh
 cp /tmp/build/update-applications.sh /root/update-applications.sh
 cp /tmp/build/update-lancache.sh /root/update-lancache.sh
+cp /tmp/build/update-lancachedomains.sh /root/update-lancachedomains.sh
 cp /tmp/build/runonce.sh /etc/init.d/runonce.sh
 
 mkdir -p /mnt/lancache

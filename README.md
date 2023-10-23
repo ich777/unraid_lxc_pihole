@@ -114,7 +114,9 @@ After mounting the path from the Host you can run this script. On the first run 
 
 If you need other values then please edit the file `/root/update-lancache.sh` and audjust the values to your preferences (please note if you exceed the disk size for the value from CACHE_SIZE the container will not start and will be stuck in a restart loop)
 
-To enable frequent updates remove the `#` from the last line in the crontab, see [(optional) Confiure cron](#optional-step-7-configure-cron) for more information.
+Please also run `/root/update-lancachedomains.sh YOURIP` once to generate dnsmasq files which will then be used by PiHole to make use of your LANCache (please replace `YOURIP` with the IP from your PiHole or keepalived IP address <- this applies also to the crontab if you enable that schedule).
+
+To enable frequent updates from lancache remove the `#` from the last line in the crontab, see [(optional) Confiure cron](#optional-step-7-configure-cron) for more information.
 
 ## (optional) Step 7: Configure cron
 

@@ -94,7 +94,9 @@ DNS=x.x.x.x
 
 ## (optional) Step 5: Configure Gravity sync
 
-- TBD
+Please head over to the Wiki from Gravity sync over [here](https://github.com/vmstan/gravity-sync/wiki/Installing#configuration) to see how the configuration process is working.  
+
+Note: if you are not using Gravity sync it is recommended to comment the line `gravity-sync update` from the file `/root/update-applications`.
 
 ## (optional) Step 6: Configure LANCache
 

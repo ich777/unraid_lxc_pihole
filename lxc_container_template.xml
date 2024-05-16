@@ -6,6 +6,7 @@
   <Architecture>amd64</Architecture>
   <Repository>https://github.com/ich777/unraid_lxc_pihole</Repository>
   <Description>Unbound, PiHole, Gravity sync, keepalived</Description>
+  <Privileged>true</Privileged>
   <Autostart>true</Autostart>
   <Beta>True</Beta>
   <Support>https://support.me.pls</Support>

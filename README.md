@@ -37,8 +37,16 @@
 
 ## Step 1: Install Container archive
 
-1. Go to the CA App and search for PiHole
-2. Select the LXC template and install it
+1. ~~Go to the CA App and search for PiHole~~ <- not implemented currently
+2. ~~Select the LXC template and install it~~ <- not implemented currently
+
+   
+Currently only available by manually downloading and installing the template
+1. Open a Unraid terminal and execute `wget -O /tmp/lxc_container_template.xml https://raw.githubusercontent.com/ich777/unraid_lxc_pihole/main/lxc_container_template.xml`
+2. Navigate to `http://<YourunRAIDIP>/LXCAddTemplate`
+3. Make your changes if necessary
+4. Click Apply
+5. Wait for the Done button
 
 ## Step 2: Set root password
 

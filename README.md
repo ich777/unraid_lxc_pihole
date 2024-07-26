@@ -12,7 +12,6 @@
 - keepalived
 - Cron
 - PiHole
-- Gravity Sync
 - LANCache (optional)
 - OpenSSH Server
 
@@ -30,10 +29,9 @@
 2. [Set root password](#step-2-set-root-password)
 3. [Set a static IP](#step-3-set-a-static-ip)
 4. [(optional) Configure keepalived](#optional-step-4-configure-keepalived)
-5. [(optional) Configure Gravity sync](#optional-step-5-configure-gravity-sync)
-6. [(optional) Configure LANCache](#optional-step-6-configure-lancache)
-7. [(optional) Confiure cron](#optional-step-7-configure-cron)
-8. [(optional) Configure Unbound](#optional-step-8-configure-unbound)
+5. [(optional) Configure LANCache](#optional-step-5-configure-lancache)
+6. [(optional) Confiure cron](#optional-step-6-configure-cron)
+7. [(optional) Configure Unbound](#optional-step-7-configure-unbound)
 
 ## Step 1: Install Container archive
 
@@ -100,13 +98,7 @@ DNS=x.x.x.x
 - Enable keepalived for automatic start from the container with `systemctl enable keepalived`
 - To start keepalived restart the container or issue `systemctl start keepalived` 
 
-## (optional) Step 5: Configure Gravity sync
-
-Please head over to the Wiki from Gravity sync over [here](https://github.com/vmstan/gravity-sync/wiki/Installing#configuration) to see how the configuration process is working.  
-
-Note: if you are not using Gravity sync it is recommended to comment the line `gravity-sync update` from the file `/root/update-applications`.
-
-## (optional) Step 6: Configure LANCache
+## (optional) Step 5: Configure LANCache
 
 The container ships with a script located at `/root/update-lancache.sh` that is not enabled by default.
 
@@ -128,7 +120,7 @@ Please also run `/root/update-lancachedomains.sh YOURIP` once to generate dnsmas
 
 To enable frequent updates from lancache remove the `#` from the last line in the crontab, see [(optional) Confiure cron](#optional-step-7-configure-cron) for more information.
 
-## (optional) Step 7: Configure cron
+## (optional) Step 6: Configure cron
 
 By default the cron schedules for updates are:
 - root.hints: every Sunday at 0:00
@@ -140,7 +132,7 @@ To change the crontab:
 - Select your prefered editor (in this example nano) by pressing 1 and ENTER
 - Change the crontab accordingly and press "CTRL + X" followed by "Y" and ENTER to save the file
 
-## (optional) Step 8: Configure Unbound
+## (optional) Step 7: Configure Unbound
 - The configuration from Unbound is located at `/etc/unbound/unbound.conf`(if you need for example IPv6 or your local subnets doesn't match)
 - Don't forget to restart Unbound with `systemctl restart unbound`after editing the file or simply restart the container
 

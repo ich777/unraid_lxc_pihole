@@ -5,14 +5,14 @@
   <Release>bookworm</Release>
   <Architecture>amd64</Architecture>
   <Repository>https://github.com/ich777/unraid_lxc_pihole</Repository>
-  <Description>Unbound, PiHole, Gravity sync, keepalived</Description>
+  <Description>Unbound, PiHole, keepalived</Description>
   <Privileged>true</Privileged>
   <Autostart>true</Autostart>
   <Beta>True</Beta>
   <Support>https://support.me.pls</Support>
   <Source>https://pi-hole.net/</Source>
   <Project>https://github.com/pi-hole/pi-hole</Project>
-  <Overview>This LXC container contains a fully fledged non caching DNS Unbound instance alongside with PiHole for AdBlocking, Gravity sync for synchronizing your PiHoles and keepalived for high availability.&#xD;
+  <Overview>This LXC container contains a fully fledged non caching DNS Unbound instance alongside with PiHole for AdBlocking and keepalived for high availability.&#xD;
 Please note that keepalived is not installed by default</Overview>
   <Category>Tools:</Category>
   <WebUI>http://[IP]:8080/admin </WebUI>
